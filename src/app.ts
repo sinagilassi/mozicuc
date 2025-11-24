@@ -11,9 +11,9 @@ import { ReferenceType, ConversionDict } from './types';
 
 // Package metadata
 export const VERSION = '1.0.0';
-export const AUTHOR = 'Your Name';
-export const EMAIL = 'your.email@example.com';
-export const DESCRIPTION = 'TypeScript Custom Unit Converter - A flexible unit conversion library';
+export const AUTHOR = 'Sina Gilassi';
+export const EMAIL = 'sina.gilassi@gmail.com';
+export const DESCRIPTION = 'Mozi Custom Unit Converter - A flexible unit conversion library';
 
 /**
  * Check the version of the package
