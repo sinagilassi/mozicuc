@@ -1,0 +1,15 @@
+src/
+tests/
+tsconfig.json
+jest.config.js
+.gitignore
+*.test.ts
+.git/
+.github/
+*.log
+.env
+.DS_Store
+coverage/
+examples/
+docs/
+EOF

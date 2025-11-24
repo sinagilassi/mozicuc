@@ -1,0 +1,49 @@
+{
+  "name": "mozicuc",
+  "version": "1.0.0",
+  "description": "TypeScript Custom Unit Converter - A flexible unit conversion library for TypeScript projects.",
+  "homepage": "https://github.com/sinagilassi/mozi-unit-converter#readme",
+  "bugs": {
+    "url": "https://github.com/sinagilassi/mozi-unit-converter/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sinagilassi/mozi-unit-converter.git"
+  },
+  "license": "MIT",
+  "author": "Sina Gilassi",
+  "type": "commonjs",
+  "main": "index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "prepublishOnly": "npm run build",
+    "watch": "tsc --watch"
+  },
+  "keywords": [
+    "unit-converter",
+    "conversion",
+    "units",
+    "temperature",
+    "pressure",
+    "typescript"
+  ],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^24.10.1",
+    "jest": "^30.2.0",
+    "ts-jest": "^29.4.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.1"
+  }
+}
