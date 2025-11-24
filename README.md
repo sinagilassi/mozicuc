@@ -412,8 +412,8 @@ TypeScript conversion of [PyCUC](https://github.com/sinagilassi/PyCUC) (Python C
 ## 📞 Support
 
 - 📧 Email: sina.gilassi[at]gmail.com
-- 🐛 Issues: [GitHub Issues](https://github.com/yourusername/mozicuc/issues)
-- 💬 Discussions: [GitHub Discussions](https://github.com/yourusername/mozicuc/discussions)
+- 🐛 Issues: [GitHub Issues](https://github.com/sinagilassi/mozicuc/issues)
+- 💬 Discussions: [GitHub Discussions](https://github.com/sinagilassi/mozicuc/discussions)
 
 ## 🗺️ Roadmap
 

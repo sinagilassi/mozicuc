@@ -2,13 +2,13 @@
   "name": "mozicuc",
   "version": "1.0.0",
   "description": "TypeScript Custom Unit Converter - A flexible unit conversion library for TypeScript projects.",
-  "homepage": "https://github.com/sinagilassi/mozi-unit-converter#readme",
+  "homepage": "https://github.com/sinagilassi/mozicuc#readme",
   "bugs": {
-    "url": "https://github.com/sinagilassi/mozi-unit-converter/issues"
+    "url": "https://github.com/sinagilassi/mozicuc/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sinagilassi/mozi-unit-converter.git"
+    "url": "git+https://github.com/sinagilassi/mozicuc.git"
   },
   "license": "MIT",
   "author": "Sina Gilassi",
