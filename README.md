@@ -1,6 +1,7 @@
 # MOZICUC - MOZI Custom Unit Converter
 
 [![npm version](https://badge.fury.io/js/mozicuc.svg)](https://www.npmjs.com/package/mozicuc)
+[![npm downloads](https://img.shields.io/npm/dm/mozicuc?color=brightgreen)](https://www.npmjs.com/package/mozicuc)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A flexible and comprehensive unit conversion library for TypeScript/JavaScript applications. Convert between various units of measurement including pressure, temperature, density, energy, and more. Support for custom units via YAML configuration.
