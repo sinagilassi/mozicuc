@@ -1,8 +1,11 @@
-import typescript from '@rollup/plugin-typescript';
+import typescript from 'rollup-plugin-typescript2';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-// local
-const packageJson = require('./package.json');
+import { readFileSync } from 'fs';
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
+const packageJson = JSON.parse(readFileSync('./package.json', 'utf8'));
 
 export default {
     input: 'src/index.ts',
@@ -19,9 +22,13 @@ export default {
         },
     ],
     plugins: [
-        nodeResolve(),
+        nodeResolve({
+            preferBuiltins: false,
+        }),
         commonjs(),
-        typescript({ tsconfig: './tsconfig.json' }),
+        typescript({
+            typescript: require('typescript'),
+        }),
     ],
-    external: [], // Add external dependencies here if needed
+    external: ['js-yaml'], // Mark external dependencies
 };

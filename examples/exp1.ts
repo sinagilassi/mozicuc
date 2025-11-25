@@ -3,7 +3,7 @@
  * Demonstrates all features and functions
  */
 
-import * as mozicuc from '../src';
+import * as mozicuc from '../src/index';
 
 console.log('╔════════════════════════════════════════╗');
 console.log('║   MOZICUC - Complete Usage Examples    ║');
