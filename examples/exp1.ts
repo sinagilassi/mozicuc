@@ -106,27 +106,27 @@ console.log(`  100 C => K: ${converter.fromTo(100, 'C', 'K').toFixed(2)}`);
 
 // Volume conversions
 console.log('\nVolume conversions:');
-console.log(`  1 m3 => L: ${converter.fromTo(1, 'm3', 'L')}`);
-console.log(`  1 L => cm3: ${converter.fromTo(1, 'L', 'cm3')}`);
+// console.log(`  1 m3 => L: ${converter.fromTo(1, 'm3', 'L')}`);
+// console.log(`  1 L => cm3: ${converter.fromTo(1, 'L', 'cm3')}`);
 
 // Energy conversions
 console.log('\nEnergy conversions:');
-console.log(`  1000 J => kJ: ${converter.fromTo(1000, 'J', 'kJ')}`);
-console.log(`  1 kWh => J: ${converter.fromTo(1, 'kWh', 'J')}\n`);
+// console.log(`  1000 J => kJ: ${converter.fromTo(1000, 'J', 'kJ')}`);
+// console.log(`  1 kWh => J: ${converter.fromTo(1, 'kWh', 'J')}\n`);
 
 // ============================================
 // SECTION 7: Adding Custom Units to go()
 // ============================================
-console.log('─── 7. Custom Units with go() ───');
+// console.log('─── 7. Custom Units with go() ───');
 
-converter.addCustomUnit('apple', 1.0);
-converter.addCustomUnit('orange', 2.0);
-converter.addCustomUnit('banana', 0.5);
+// converter.addCustomUnit('apple', 1.0);
+// converter.addCustomUnit('orange', 2.0);
+// converter.addCustomUnit('banana', 0.5);
 
-console.log('Added fruit units:');
-console.log(`  10 apples => oranges: ${converter.fromTo(10, 'apple', 'orange')}`);
-console.log(`  10 apples => bananas: ${converter.fromTo(10, 'apple', 'banana')}`);
-console.log(`  5 oranges => apples: ${converter.fromTo(5, 'orange', 'apple')}\n`);
+// console.log('Added fruit units:');
+// console.log(`  10 apples => oranges: ${converter.fromTo(10, 'apple', 'orange')}`);
+// console.log(`  10 apples => bananas: ${converter.fromTo(10, 'apple', 'banana')}`);
+// console.log(`  5 oranges => apples: ${converter.fromTo(5, 'orange', 'apple')}\n`);
 
 // ============================================
 // SECTION 8: Checking References
@@ -217,6 +217,8 @@ console.log('');
 // ============================================
 console.log('─── 12. Conversion Block Patterns ───');
 
+const to = mozicuc.to;
+
 const conversionBlocks = [
     { value: 100, block: 'bar => psi' },
     { value: 273.15, block: 'K => C' },
@@ -226,7 +228,7 @@ const conversionBlocks = [
 ];
 
 conversionBlocks.forEach(({ value, block }) => {
-    const result = converter.to(value, block);
+    const result = to(value, block);
     console.log(`  ${value} ${block}: ${result.toFixed(4)}`);
 });
 

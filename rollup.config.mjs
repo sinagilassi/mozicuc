@@ -20,6 +20,15 @@ export default {
             format: 'esm',
             sourcemap: true,
         },
+        {
+            file: packageJson['umd:main'],
+            format: 'umd',
+            name: 'Mozicuc', // Required for UMD
+            sourcemap: true,
+            globals: {
+                'js-yaml': 'jsyaml' // Define global variable name for external dependency
+            }
+        },
     ],
     plugins: [
         nodeResolve({
