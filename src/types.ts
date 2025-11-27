@@ -1,4 +1,4 @@
-// Type definitions for TSCUC
+// Type definitions
 
 export interface ConversionDict {
     [key: string]: number;
