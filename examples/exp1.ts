@@ -257,7 +257,7 @@ console.log('');
 // Summary
 // ============================================
 console.log('╔════════════════════════════════════════╗');
-console.log('║     All Examples Completed! ✓          ║');
+console.log('║     All Examples Completed!            ║');
 console.log('╚════════════════════════════════════════╝\n');
 
 console.log('Available Functions:');

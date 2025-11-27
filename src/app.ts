@@ -58,7 +58,7 @@ export function checkReference(
 }
 
 /**
- * Initializes app with/without external YAML file
+ * Initializes app with/without external YAML file, this method is only used when custom units are defined
  * @param referenceFile - Optional path to the YAML reference file
  * @returns CustomUnitConverterX object
  *
