@@ -1,4 +1,4 @@
-# MOZICUC - MOZI Custom Unit Converter
+# MoziCUC - MOZI Custom Unit Converter
 
 [![npm version](https://badge.fury.io/js/mozicuc.svg)](https://www.npmjs.com/package/mozicuc)
 [![npm downloads](https://img.shields.io/npm/dm/mozicuc?color=brightgreen)](https://www.npmjs.com/package/mozicuc)
