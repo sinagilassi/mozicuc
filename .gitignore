@@ -6,6 +6,10 @@ dist/
 /dist/
 /build/
 
+# private
+/private/
+/private
+
 # TypeScript cache
 *.tsbuildinfo
 

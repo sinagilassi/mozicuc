@@ -5,7 +5,7 @@
 
 import * as fs from 'fs';
 import { CustomUnitConverter } from './CustomUnitConverter';
-import { CustomUnitConverterX } from './CustomUnitConverterX';
+import { CustomUnitConverterX } from '../private/CustomUnitConverterX';
 import { Utils } from './Utils';
 import { ReferenceType, ConversionDict } from './types';
 

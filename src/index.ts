@@ -5,7 +5,7 @@
 
 // Classes
 export { CustomUnitConverter } from './CustomUnitConverter';
-export { CustomUnitConverterX } from './CustomUnitConverterX';
+export { CustomUnitConverterX } from '../private/CustomUnitConverterX';
 export { Refs } from './Refs';
 export { Utils } from './Utils';
 
