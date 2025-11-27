@@ -11,7 +11,7 @@ import { Utils } from './Utils';
 import { ReferenceType, ConversionDict } from './types';
 
 // Package metadata
-export const VERSION = '1.0.0';
+export const VERSION = '1.0.1';
 export const AUTHOR = 'Sina Gilassi';
 export const EMAIL = 'sina.gilassi@gmail.com';
 export const DESCRIPTION = 'Mozi Custom Unit Converter - A flexible unit conversion library';
