@@ -5,7 +5,6 @@
 
 import * as fs from 'fs';
 import { CustomUnitConverter } from './CustomUnitConverter';
-import { CustomUnitConverterX } from '../private/CustomUnitConverterX';
 import { Utils } from './Utils';
 import { ReferenceType, ConversionDict } from './types';
 
@@ -58,9 +57,9 @@ export function checkReference(
 }
 
 /**
- * Initializes app with/without external YAML file, this method is only used when custom units are defined
+ * Initializes app with/without external YAML file, this method is also used when custom units are defined
  * @param referenceFile - Optional path to the YAML reference file
- * @returns CustomUnitConverterX object
+ * @returns CustomUnitConverter object
  *
  * @example
  * ```typescript
@@ -87,9 +86,9 @@ export function checkReference(
  *     cal/mol: 0.239006
  * ```
  */
-export function go(referenceFile?: string): CustomUnitConverterX {
+export function go(referenceFile?: string): CustomUnitConverter {
     try {
-        const cucxC = new CustomUnitConverterX(0, '');
+        const cucxC = new CustomUnitConverter(0, '');
 
         if (referenceFile) {
             if (!fs.existsSync(referenceFile)) {
