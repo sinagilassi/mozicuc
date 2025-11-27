@@ -39,6 +39,9 @@ export default [
             commonjs(),
             typescript({
                 typescript: require('typescript'),
+                declaration: true,
+                declarationDir: 'dist',
+                rootDir: './src',
             }),
         ],
         external: ['js-yaml'], // Mark external dependencies (no fs here for browser compat)
@@ -48,12 +51,12 @@ export default [
         input: 'src/node.ts',
         output: [
             {
-                file: 'dist/node.cjs.js',
+                file: 'dist/app.node.cjs.js',
                 format: 'cjs',
                 sourcemap: true,
             },
             {
-                file: 'dist/node.esm.js',
+                file: 'dist/app.node.esm.js',
                 format: 'esm',
                 sourcemap: true,
             },
@@ -65,6 +68,9 @@ export default [
             commonjs(),
             typescript({
                 typescript: require('typescript'),
+                declaration: true,
+                declarationDir: 'dist',
+                rootDir: './src',
             }),
         ],
         external: ['js-yaml', 'fs'], // Mark external dependencies including fs
