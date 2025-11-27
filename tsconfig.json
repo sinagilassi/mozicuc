@@ -16,6 +16,7 @@
 		"resolveJsonModule": true,
 		"declaration": true,
 		"declarationMap": true,
+		"declarationDir": "dist",
 		"sourceMap": true,
 		"allowJs": true,
 		"inlineSources": true

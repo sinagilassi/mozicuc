@@ -25,7 +25,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "build:rollup": "rollup -c rollup.config.mjs",
+    "build:rollup": "npm run clean && rollup -c rollup.config.mjs",
     "test": "jest",
     "prepublishOnly": "npm run build:rollup && npm test",
     "watch": "tsc --watch",
