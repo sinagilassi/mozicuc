@@ -574,14 +574,6 @@ TypeScript conversion of [PyCUC](https://github.com/sinagilassi/PyCUC) (Python C
 - 🐛 Issues: [GitHub Issues](https://github.com/sinagilassi/mozicuc/issues)
 - 💬 Discussions: [GitHub Discussions](https://github.com/sinagilassi/mozicuc/discussions)
 
-## 🗺️ Roadmap
-
-- [ ] Add more unit types (area, speed, acceleration)
-- [ ] Support for unit arithmetic (e.g., kg*m/s²)
-- [ ] Web-based converter tool
-- [ ] CLI tool for terminal usage
-- [ ] React/Vue component library
-
 ## ⭐ Star History
 
 If you find this project useful, please consider giving it a star on GitHub!
