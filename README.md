@@ -116,7 +116,7 @@ pressure.convert('atm');    // 98.6923
 
 #### `go(referenceFile?)`
 
-Initialize a CustomUnitConverterX object.
+Initialize a CustomUnitConverter object.
 
 ```typescript
 // Without custom units
@@ -367,7 +367,6 @@ Full TypeScript support with comprehensive type definitions:
 ```typescript
 import {
   CustomUnitConverter,
-  CustomUnitConverterX,
   ReferenceType,
   ConversionDict,
   convertFromTo,
