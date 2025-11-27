@@ -15,17 +15,17 @@
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "umd:main": "dist/index.umd.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "exports": {
     ".": {
       "browser": {
         "import": "./dist/index.esm.js",
-        "types": "./dist/index.d.ts"
+        "types": "./dist/types/index.d.ts"
       },
       "node": {
         "require": "./dist/index.cjs.js",
         "import": "./dist/index.esm.js",
-        "types": "./dist/index.d.ts"
+        "types": "./dist/types/index.d.ts"
       },
       "import": "./dist/index.esm.js",
       "require": "./dist/index.cjs.js",
@@ -34,7 +34,7 @@
     "./node": {
       "require": "./dist/app.node.cjs.js",
       "import": "./dist/app.node.esm.js",
-      "types": "./dist/app.node.d.ts"
+      "types": "./dist/types/app.node.d.ts"
     }
   },
   "scripts": {
