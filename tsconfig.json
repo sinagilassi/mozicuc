@@ -29,11 +29,12 @@
 	},
 	"include": [
 		"src/**/*"
-, "private/CustomUnitConverterX.ts"	],
+	],
 	"exclude": [
 		"node_modules",
 		"dist",
 		"tests",
-		"**/*.test.ts"
+		"**/*.test.ts",
+		"private/CustomUnitConverterX.ts"
 	]
 }
