@@ -4,7 +4,12 @@
 [![npm downloads](https://img.shields.io/npm/dm/mozicuc?color=brightgreen)](https://www.npmjs.com/package/mozicuc)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A flexible and comprehensive unit conversion library for TypeScript/JavaScript applications. Convert between various units of measurement including pressure, temperature, density, energy, and more. Support for custom units via YAML configuration.
+A flexible and comprehensive unit conversion library for TypeScript/JavaScript applications that works in **both browser and Node.js environments**. Convert between various units of measurement including pressure, temperature, density, energy, and more. Support for custom units via YAML configuration.
+
+**Key Advantage**: The library is optimized for both environments with separate entry points:
+
+- 🌐 **Browser**: Lightweight bundle without file I/O dependencies
+- 🖥️ **Node.js**: Full file system support for loading custom units from YAML files
 
 ## 🌟 Features
 
@@ -14,6 +19,8 @@ A flexible and comprehensive unit conversion library for TypeScript/JavaScript a
 - 📦 **Lightweight**: Minimal dependencies (only `js-yaml` for custom unit loading)
 - 🚀 **Easy to Use**: Simple, intuitive API with multiple usage patterns
 - 💪 **Robust**: Comprehensive error handling
+- 🌐 **Dual Environment Support**: Works seamlessly in browser AND Node.js
+- ⚡ **Optimized Bundles**: Separate lightweight browser bundle and full-featured Node.js bundle
 
 ## 📦 Installation
 
@@ -22,6 +29,40 @@ npm install mozicuc
 ```
 
 ## 🚀 Quick Start
+
+### Environment-Specific Imports
+
+This library supports **both browser and Node.js** with environment-specific entry points:
+
+#### 🌐 Browser (Default Import)
+
+```typescript
+// Browser-compatible - No file I/O
+import { convertFromTo, to, convert, go, goFromContent } from 'mozicuc';
+
+// Use YAML content as string (works everywhere)
+const yamlContent = `
+CUSTOM-UNIT:
+  FUEL-EFFICIENCY:
+    mpg: 1.0
+    kml: 0.425144
+`;
+const converter = goFromContent(yamlContent);
+```
+
+#### 🖥️ Node.js (Node.js Entry Point)
+
+```typescript
+// Node.js-specific - Includes file I/O
+import { goFromFile, goFromContent } from 'mozicuc/node';
+
+// Load custom units from YAML file (Node.js only)
+const converter = goFromFile('./custom-units.yml');
+
+// Or use content-based loading (works in both)
+import { goFromContent } from 'mozicuc';
+const converter = goFromContent(yamlContent);
+```
 
 ### Method 1: Simple Conversion
 
@@ -55,18 +96,43 @@ console.log(converter.convert('Pa'));    // 10000000
 console.log(converter.convert('atm'));   // 98.6923
 ```
 
-### Method 3: Using go() Function
+### Method 3: Using go() Function (Browser & Node.js)
 
 ```typescript
 import { go } from 'mozicuc';
 
-// Initialize converter
+// Initialize with default built-in units (works everywhere)
 const converter = go();
 
 // Flexible conversions
-console.log(converter.fromTo(100, 'bar', 'psi'));  // 1450.38
-console.log(converter.to(32, 'F => C'));            // 0
-console.log(converter.fromTo(1, 'm3', 'L'));        // 1000
+console.log(converter.convert(100, 'bar', 'psi'));  // 1450.38
+console.log(converter.convert(32, 'F', 'C'));       // 0
+```
+
+### Method 4: Custom Units from YAML Content (Browser & Node.js)
+
+```typescript
+import { goFromContent } from 'mozicuc';
+
+const yamlContent = `
+CUSTOM-UNIT:
+  FUEL-EFFICIENCY:
+    mpg: 1.0
+    kml: 0.425144
+`;
+
+const converter = goFromContent(yamlContent);
+console.log(converter.convert(30, 'mpg', 'kml'));  // 12.15 km/L
+```
+
+### Method 5: Custom Units from YAML File (Node.js Only)
+
+```typescript
+import { goFromFile } from 'mozicuc/node';
+
+// Load from file (Node.js only - use goFromContent for browser)
+const converter = goFromFile('./custom-units.yml');
+console.log(converter.convert(30, 'mpg', 'kml'));  // 12.15 km/L
 ```
 
 ## 📖 Complete API Reference
@@ -114,20 +180,47 @@ pressure.convert('Pa');     // 10000000
 pressure.convert('atm');    // 98.6923
 ```
 
-#### `go(referenceFile?)`
+#### `go()`
 
-Initialize a CustomUnitConverter object.
+Initialize a CustomUnitConverter object with default built-in units.
 
 ```typescript
-// Without custom units
+// Works in browser and Node.js
 const converter = go();
 
-// With custom units from YAML
-const converter = go('./custom-units.yml');
+converter.convert(100, 'bar', 'psi');    // 1450.38
+converter.convert(32, 'F', 'C');         // 0
+```
 
-// Usage
-converter.fromTo(100, 'bar', 'psi');
-converter.to(32, 'F => C');
+#### `goFromContent(yamlContent)` (Browser & Node.js Compatible)
+
+Initialize with custom units from YAML content string. **Recommended for browser applications**.
+
+```typescript
+// Works everywhere
+import { goFromContent } from 'mozicuc';
+
+const yamlContent = `
+CUSTOM-UNIT:
+  FUEL-EFFICIENCY:
+    mpg: 1.0
+    kml: 0.425144
+`;
+
+const converter = goFromContent(yamlContent);
+console.log(converter.convert(30, 'mpg', 'kml'));
+```
+
+#### `goFromFile(referenceFile)` (Node.js Only)
+
+Initialize with custom units from a YAML file. **Node.js environments only**.
+
+```typescript
+// Node.js only - use separate import
+import { goFromFile } from 'mozicuc/node';
+
+const converter = goFromFile('./custom-units.yml');
+console.log(converter.convert(30, 'mpg', 'kml'));
 ```
 
 ### Utility Functions
@@ -225,7 +318,7 @@ console.log(info.version, info.description);
 
 ## 🎨 Advanced Usage
 
-### Custom Units - Dynamic
+### Custom Units - Dynamic (Browser & Node.js)
 
 ```typescript
 import { go } from 'mozicuc';
@@ -238,11 +331,35 @@ converter.addCustomUnit('orange', 2.0);
 converter.addCustomUnit('banana', 0.5);
 
 // Convert between custom units
-console.log(converter.fromTo(10, 'apple', 'orange'));   // 5
-console.log(converter.fromTo(10, 'apple', 'banana'));   // 20
+console.log(converter.convert(10, 'apple', 'orange'));   // 5
+console.log(converter.convert(10, 'apple', 'banana'));   // 20
 ```
 
-### Custom Units - YAML File
+### Custom Units - YAML Content (Browser & Node.js)
+
+```typescript
+import { goFromContent } from 'mozicuc';
+
+const yamlContent = `
+CUSTOM-UNIT:
+  FUEL-EFFICIENCY:
+    mpg: 1.0
+    kml: 0.425144
+    l100km: 235.215
+  HEAT-CAPACITY:
+    J/mol.K: 1
+    kJ/mol.K: 0.001
+    J/kmol.K: 1000
+`;
+
+const converter = goFromContent(yamlContent);
+
+// Convert fuel efficiency
+console.log(converter.convert(30, 'mpg', 'kml'));         // 12.75 km/L
+console.log(converter.convert(30, 'mpg', 'l100km'));      // 7.84 L/100km
+```
+
+### Custom Units - YAML File (Node.js Only)
 
 Create `custom-units.yml`:
 
@@ -261,21 +378,23 @@ CUSTOM-UNIT:
     mypsi: 14.5038
 ```
 
-Load and use:
+Load and use (Node.js only):
 
 ```typescript
-import { go } from 'mozicuc';
+import { goFromFile } from 'mozicuc/node';
 
-const converter = go('./custom-units.yml');
+const converter = goFromFile('./custom-units.yml');
 
 // Convert fuel efficiency
-const kml = converter.fromTo(30, 'mpg', 'kml');
+const kml = converter.convert(30, 'mpg', 'kml');
 console.log(`30 mpg = ${kml} km/L`);
 
 // Convert custom pressure
-const mypsi = converter.fromTo(100, 'mybar', 'mypsi');
+const mypsi = converter.convert(100, 'mybar', 'mypsi');
 console.log(`100 mybar = ${mypsi} mypsi`);
 ```
+
+**Note**: For browser applications, use `goFromContent()` with YAML strings instead.
 
 ### Batch Conversions
 
@@ -310,54 +429,95 @@ const tempUnits = checkReference('TEMPERATURE', true);
 console.log(tempUnits);
 ```
 
+## 📱 Environment-Specific Guidelines
+
+### For Browser Applications
+
+```typescript
+// ✅ Use default import
+import { convertFromTo, goFromContent } from 'mozicuc';
+
+// ✅ Load custom units from YAML strings
+const yamlContent = `...`;
+const converter = goFromContent(yamlContent);
+
+// ❌ Don't use file I/O (not available in browser)
+// import { goFromFile } from 'mozicuc/node';  // Won't work in browser
+```
+
+### For Node.js Applications
+
+```typescript
+// ✅ Use Node.js entry point for file I/O
+import { goFromFile, goFromContent } from 'mozicuc/node';
+
+// ✅ Load from YAML files
+const converter = goFromFile('./custom-units.yml');
+
+// ✅ Or use content-based loading
+const converter = goFromContent(yamlContent);
+
+// ✅ Or use default import for basic conversions
+import { convertFromTo } from 'mozicuc';
+```
+
+### For Isomorphic/Universal Code
+
+```typescript
+// ✅ Use only browser-compatible APIs
+import { go, goFromContent, convertFromTo } from 'mozicuc';
+
+// This works in both browser and Node.js
+const converter = goFromContent(yamlContent);
+
+// Avoid Node.js-specific imports for universal code
+// import { goFromFile } from 'mozicuc/node';  // Not browser-compatible
+```
+
 ## 💡 Real-World Examples
 
-### Engineering Calculations
+### Browser: Temperature Converter App
 
 ```typescript
-import { convert, createCuc } from 'mozicuc';
+import { goFromContent } from 'mozicuc';
 
-// Pressure vessel design
-const workingPressure = convert(150, 'psi', 'MPa');  // 1.034 MPa
+// Web app with custom temperature scales
+const yamlContent = `
+CUSTOM-UNIT:
+  EXPERIMENTAL-TEMPS:
+    myScale: 1.0
+    otherScale: 0.5
+`;
 
-// Heat transfer
-const heatCapacity = createCuc(4.18, 'kJ/kg.K');
-const cpBTU = heatCapacity.convert('BTU/lb.F');      // 0.998 BTU/lb.F
+const converter = goFromContent(yamlContent);
 
-// Flow rate
-const volumeFlow = convert(100, 'gal(US)', 'L');     // 378.54 L
-```
-
-### Scientific Conversions
-
-```typescript
-import { to, convertFromTo } from 'mozicuc';
-
-// Energy calculations
-const energy = to(1000, 'cal => J');                 // 4184 J
-const enthalpy = convertFromTo(50, 'kJ/mol', 'J/mol'); // 50000 J/mol
-
-// Temperature conversions for research
-const roomTemp = to(25, 'C => K');                   // 298.15 K
-const meltingPoint = to(0, 'C => F');                // 32 F
-```
-
-### Web Applications
-
-```typescript
-import { go } from 'mozicuc';
-
-// User preference conversion
-function displayValue(value: number, userUnit: string) {
-  const converter = go();
-
-  // Convert from metric to user preference
-  const converted = converter.fromTo(value, 'm', userUnit);
-  return `${converted.toFixed(2)} ${userUnit}`;
+// Convert user input
+function convertTemperature(value: number, from: string, to: string): string {
+  return converter.convert(value, from, to).toFixed(2);
 }
 
-console.log(displayValue(1000, 'ft'));  // "3280.84 ft"
-console.log(displayValue(1000, 'mi'));  // "0.62 mi"
+// Display in UI
+console.log(convertTemperature(100, 'C', 'F'));  // "212.00"
+```
+
+### Node.js: File-Based Batch Converter
+
+```typescript
+import { goFromFile } from 'mozicuc/node';
+import * as fs from 'fs';
+
+// Load company-wide unit definitions
+const converter = goFromFile('./company-standards.yml');
+
+// Process CSV data
+const data = fs.readFileSync('measurements.csv', 'utf-8');
+const rows = data.split('\n').slice(1);
+
+rows.forEach(row => {
+  const [value, fromUnit, toUnit] = row.split(',');
+  const result = converter.convert(parseFloat(value), fromUnit, toUnit);
+  console.log(`${value} ${fromUnit} = ${result} ${toUnit}`);
+});
 ```
 
 ## 🔧 TypeScript Support
