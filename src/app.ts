@@ -1,9 +1,11 @@
 /**
  * TSCUC - Main Application Functions
  * Provides convenient helper functions for unit conversion
+ *
+ * For Node.js file I/O functions, see app.node.ts
+ * For browser-compatible content-based loading, use goFromContent()
  */
 
-import * as fs from 'fs';
 import { CustomUnitConverter } from './CustomUnitConverter';
 import { Utils } from './Utils';
 import { ReferenceType, ConversionDict } from './types';
@@ -57,22 +59,40 @@ export function checkReference(
 }
 
 /**
- * Initializes app with/without external YAML file, this method is also used when custom units are defined
- * @param referenceFile - Optional path to the YAML reference file
+ * Initializes app with default built-in references (works in browser and Node.js)
  * @returns CustomUnitConverter object
  *
  * @example
  * ```typescript
- * // Without custom units
+ * // Basic initialization
  * const converter = go();
  *
- * // With custom units from YAML file
- * const converter = go('./custom-units.yml');
- * ```
+ * // For custom units from YAML file in Node.js, use goFromFile() from app.node.ts:
+ * // import { goFromFile } from './app.node.ts';
+ * // const converter = goFromFile('./custom-units.yml');
  *
- * @remarks
- * YAML reference file format:
- * ```yaml
+ * // For YAML content (works in browser and Node.js), use goFromContent():
+ * // const converter = goFromContent(yamlContent);
+ * ```
+ */
+export function go(): CustomUnitConverter {
+    try {
+        const cucxC = new CustomUnitConverter(0, '');
+        return cucxC;
+    } catch (error) {
+        throw new Error(`Initializing failed! ${error}`);
+    }
+}
+
+/**
+ * Initializes app with custom units from YAML content string
+ * Works in both Node.js and browser environments
+ * @param yamlContent - YAML content as string
+ * @returns CustomUnitConverter object with loaded custom units
+ *
+ * @example
+ * ```typescript
+ * const yamlContent = `
  * CUSTOM-UNIT:
  *   HEAT-CAPACITY:
  *     J/mol.K: 1
@@ -84,22 +104,24 @@ export function checkReference(
  *     J/kmol: 1000
  *     kcal/mol: 0.000239006
  *     cal/mol: 0.239006
+ * `;
+ * const converter = goFromContent(yamlContent);
+ * ```
+ *
+ * @remarks
+ * For Node.js file I/O, import goFromFile from app.node.ts:
+ * ```typescript
+ * import { goFromFile } from './app.node.ts';
+ * const converter = goFromFile('./custom-units.yml');
  * ```
  */
-export function go(referenceFile?: string): CustomUnitConverter {
+export function goFromContent(yamlContent: string): CustomUnitConverter {
     try {
         const cucxC = new CustomUnitConverter(0, '');
-
-        if (referenceFile) {
-            if (!fs.existsSync(referenceFile)) {
-                throw new Error('File not found!');
-            }
-            cucxC.loadCustomUnit(referenceFile);
-        }
-
+        cucxC.loadCustomUnitFromContent(yamlContent);
         return cucxC;
     } catch (error) {
-        throw new Error(`Initializing failed! ${error}`);
+        throw new Error(`Initializing from content failed! ${error}`);
     }
 }
 

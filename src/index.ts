@@ -1,6 +1,9 @@
 /**
  * TSCUC - TypeScript Custom Unit Converter
  * A flexible and comprehensive unit conversion library
+ *
+ * For Node.js file I/O functions (goFromFile), use:
+ * import { goFromFile } from 'mozicuc/node';
  */
 
 // Classes
@@ -17,7 +20,7 @@ export type {
     CustomUnitFile
 } from './types';
 
-// App Functions
+// App Functions (Cross-platform: Browser + Node.js)
 export {
     VERSION,
     AUTHOR,
@@ -26,6 +29,7 @@ export {
     checkVersion,
     checkReference,
     go,
+    goFromContent,
     createCuc,
     convertFromTo,
     to,

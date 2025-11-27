@@ -277,7 +277,13 @@ export class CustomUnitConverter extends Utils {
     }
 
     /**
-     * Loads custom units from YAML file
+     * Loads custom units from YAML file (Node.js only)
+     * @param filePath - Path to YAML file
+     * @returns Custom conversions dictionary
+     *
+     * @remarks
+     * This method is intended for Node.js environments.
+     * For browser environments or content-based loading, use loadCustomUnitFromContent()
      */
     loadCustomUnit(filePath: string): CustomConversions {
         try {
@@ -298,6 +304,46 @@ export class CustomUnitConverter extends Utils {
             return this._customConversionsFull;
         } catch (error) {
             throw new Error(`Loading custom unit failed! ${error}`);
+        }
+    }
+
+    /**
+     * Loads custom units from YAML content string
+     * Works in both Node.js and browser environments
+     * @param yamlContent - YAML content as string
+     * @returns Custom conversions dictionary
+     *
+     * @example
+     * ```typescript
+     * const yamlContent = `
+     * CUSTOM-UNIT:
+     *   HEAT-CAPACITY:
+     *     J/mol.K: 1
+     *     kJ/mol.K: 0.001
+     * `;
+     * const converter = new CustomUnitConverter(0, '');
+     * converter.loadCustomUnitFromContent(yamlContent);
+     * ```
+     */
+    loadCustomUnitFromContent(yamlContent: string): CustomConversions {
+        try {
+            const customUnit = this._loadCustomConversionUnitFromContent(yamlContent);
+
+            if (Object.keys(customUnit).length === 0) {
+                throw new Error('Custom unit content is empty');
+            }
+
+            if (!('CUSTOM-UNIT' in customUnit)) {
+                throw new Error("Key 'CUSTOM-UNIT' not found in YAML content");
+            }
+
+            for (const [key, value] of Object.entries(customUnit['CUSTOM-UNIT'])) {
+                this._customConversionsFull[key.trim()] = value;
+            }
+
+            return this._customConversionsFull;
+        } catch (error) {
+            throw new Error(`Loading custom unit from content failed! ${error}`);
         }
     }
 

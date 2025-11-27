@@ -18,9 +18,23 @@
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/index.cjs.js",
+      "browser": {
+        "import": "./dist/index.esm.js",
+        "types": "./dist/index.d.ts"
+      },
+      "node": {
+        "require": "./dist/index.cjs.js",
+        "import": "./dist/index.esm.js",
+        "types": "./dist/index.d.ts"
+      },
       "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js",
       "types": "./dist/index.d.ts"
+    },
+    "./node": {
+      "require": "./dist/app.node.cjs.js",
+      "import": "./dist/app.node.esm.js",
+      "types": "./dist/app.node.d.ts"
     }
   },
   "scripts": {
