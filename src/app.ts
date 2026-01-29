@@ -285,6 +285,8 @@ export function listReferences(): string[] {
         'POWER',
         'LENGTH',
         'FORCE',
+        'VISCOSITY',
+        'FLOW_RATE',
         'CUSTOM'
     ];
 }
