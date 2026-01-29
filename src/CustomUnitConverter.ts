@@ -20,6 +20,8 @@ export class CustomUnitConverter extends Utils {
     private _powerConversions: ConversionDict = {};
     private _lengthConversions: ConversionDict = {};
     private _forceConversions: ConversionDict = {};
+    private _viscosityConversions: ConversionDict = {};
+    private _flowRateConversions: ConversionDict = {};
     private _customConversions: ConversionDict = {};
     private _customConversionsFull: CustomConversions = { 'CUSTOM': {} };
 
@@ -49,6 +51,8 @@ export class CustomUnitConverter extends Utils {
         this._powerConversions = this.refs.powerConversionsRef;
         this._lengthConversions = this.refs.lengthConversionsRef;
         this._forceConversions = this.refs.forceConversionsRef;
+        this._viscosityConversions = this.refs.viscosityConversionsRef;
+        this._flowRateConversions = this.refs.flowRateConversionsRef;
     }
 
     /**
@@ -81,7 +85,9 @@ export class CustomUnitConverter extends Utils {
                 'MASS': this._massConversions,
                 'POWER': this._powerConversions,
                 'LENGTH': this._lengthConversions,
-                'FORCE': this._forceConversions
+                'FORCE': this._forceConversions,
+                'VISCOSITY': this._viscosityConversions,
+                'FLOW_RATE': this._flowRateConversions
             };
 
             const customKeys = Object.keys(this._customConversionsFull);
@@ -142,6 +148,10 @@ export class CustomUnitConverter extends Utils {
                 return 'LENGTH';
             } else if (fromUnit in this._forceConversions && toUnit in this._forceConversions) {
                 return 'FORCE';
+            } else if (fromUnit in this._viscosityConversions && toUnit in this._viscosityConversions) {
+                return 'VISCOSITY';
+            } else if (fromUnit in this._flowRateConversions && toUnit in this._flowRateConversions) {
+                return 'FLOW_RATE';
             } else if (fromUnit in this._customConversions && toUnit in this._customConversions) {
                 return 'CUSTOM';
             } else {
@@ -194,6 +204,8 @@ export class CustomUnitConverter extends Utils {
                 'POWER': (u) => this.convertX(u, 'POWER'),
                 'LENGTH': (u) => this.convertX(u, 'LENGTH'),
                 'FORCE': (u) => this.convertX(u, 'FORCE'),
+                'VISCOSITY': (u) => this.convertX(u, 'VISCOSITY'),
+                'FLOW_RATE': (u) => this.convertX(u, 'FLOW_RATE'),
                 'CUSTOM': (u) => this.convertCustom(u)
             };
 
