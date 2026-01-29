@@ -22,7 +22,6 @@ export type {
 
 // App Functions (Cross-platform: Browser + Node.js)
 export {
-    VERSION,
     AUTHOR,
     EMAIL,
     DESCRIPTION,
