@@ -21,6 +21,8 @@ export type ReferenceType =
     | 'POWER'
     | 'LENGTH'
     | 'FORCE'
+    | 'VISCOSITY'
+    | 'FLOW_RATE'
     | 'CUSTOM';
 
 export interface ConversionBlock {
