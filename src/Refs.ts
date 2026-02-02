@@ -32,7 +32,7 @@ export class Refs {
 
     // Density Conversions
     private static readonly _densityConversionsRef: ConversionDict = {
-        // mass per volume
+        // ! mass per volume
         'g/cm3': 1.0,
         'g/cm³': 1.0,
         'kg/L': 1.0,
@@ -55,7 +55,7 @@ export class Refs {
         'lb/in³': 27.6799,
         'sg': 1.0,
         'oz/gal': 133.526,
-        // mole per volume
+        // ! mole per volume
         'kmol/m3': 1.0,
         'kmol/m³': 1.0,
         'mol/m3': 1000.0,
@@ -93,6 +93,7 @@ export class Refs {
 
     // Gibbs Free Energy Conversions
     private static readonly _gibbsFreeEnergyConversionsRef: ConversionDict = {
+        // ! molar basis
         'J/mol': 1.0,
         'kJ/mol': 0.001,
         'J/kmol': 1000.0,
@@ -100,6 +101,7 @@ export class Refs {
         'kcal/mol': 0.0002390057,
         'kcal/kmol': 0.2390057,
         'cal/kmol': 239.0057,
+        // ! mass basis
         'J/kg': 1.0,
         'kJ/kg': 0.001,
         'cal/g': 0.000239006,
@@ -112,6 +114,7 @@ export class Refs {
 
     // Enthalpy Conversions
     private static readonly _enthalpyConversionsRef: ConversionDict = {
+        // ! molar basis
         'J/mol': 1.0,
         'kJ/mol': 0.001,
         'J/kmol': 1000.0,
@@ -119,6 +122,7 @@ export class Refs {
         'kcal/mol': 0.0002390057,
         'kcal/kmol': 0.2390057,
         'cal/kmol': 239.0057,
+        // ! mass basis
         'J/kg': 1.0,
         'kJ/kg': 0.001,
         'cal/g': 0.000239006,
@@ -131,6 +135,7 @@ export class Refs {
 
     // Heat Capacity Conversions
     private static readonly _heatCapacityConversionsRef: ConversionDict = {
+        // ! mass basis
         'J/kg.K': 1.0,
         'kJ/kg.K': 0.001,
         'cal/kg.K': 0.239006,
@@ -139,6 +144,7 @@ export class Refs {
         'J/g.K': 0.001,
         'kJ/g.K': 1.0e-6,
         'BTU/lb.F': 0.000238846,
+        // ! molar basis
         'J/mol.K': 1.0,
         'kJ/mol.K': 0.001,
         'cal/mol.K': 0.239005736,
@@ -226,7 +232,7 @@ export class Refs {
 
     // Flow Rate Conversions
     private static readonly _flowRateConversionsRef: ConversionDict = {
-        // molar basis
+        // ! molar basis
         'mol/s': 1.0,
         'mmol/s': 1000.0,
         'kmol/s': 0.001,
@@ -237,7 +243,7 @@ export class Refs {
         'kmol/h': 3.6,
         'kmol/hr': 3.6,
         'kmol/day': 86400.0,
-        // mass basis
+        // ! mass basis
         'kg/s': 1.0,
         'g/s': 1000.0,
         'kg/min': 60.0,
@@ -261,7 +267,7 @@ export class Refs {
         'slug/day': 1260912.0,
         'tonne/h': 3.6,
         'tonne/hr': 3.6,
-        // volume basis
+        // ! volume basis
         'm3/s': 1.0,
         'm³/s': 1.0,
         'L/s': 1000.0,
@@ -302,17 +308,28 @@ export class Refs {
         'PRESSURE': Refs._pressureConversionsRef,
         'TEMPERATURE': Refs._temperatureConversionsRef,
         'DENSITY': Refs._densityConversionsRef,
+        'DENSITY_MOLAR_UNITS': Refs._getMolarUnits(Refs._densityConversionsRef),
+        'DENSITY_MASS_UNITS': Refs._getMassUnits(Refs._densityConversionsRef),
         'ENERGY': Refs._energyConversionsRef,
         'GIBBS_FREE_ENERGY': Refs._gibbsFreeEnergyConversionsRef,
+        'GIBBS_FREE_ENERGY_MOLAR_UNITS': Refs._getMolarUnits(Refs._gibbsFreeEnergyConversionsRef),
+        'GIBBS_FREE_ENERGY_MASS_UNITS': Refs._getMassUnits(Refs._gibbsFreeEnergyConversionsRef),
         'ENTHALPY': Refs._enthalpyConversionsRef,
+        'ENTHALPY_MOLAR_UNITS': Refs._getMolarUnits(Refs._enthalpyConversionsRef),
+        'ENTHALPY_MASS_UNITS': Refs._getMassUnits(Refs._enthalpyConversionsRef),
         'HEAT_CAPACITY': Refs._heatCapacityConversionsRef,
+        'HEAT_CAPACITY_MOLAR_UNITS': Refs._getMolarUnits(Refs._heatCapacityConversionsRef),
+        'HEAT_CAPACITY_MASS_UNITS': Refs._getMassUnits(Refs._heatCapacityConversionsRef),
         'VOLUME': Refs._volumeConversionsRef,
         'MASS': Refs._massConversionsRef,
         'POWER': Refs._powerConversionsRef,
         'LENGTH': Refs._lengthConversionsRef,
         'FORCE': Refs._forceConversionsRef,
         'VISCOSITY': Refs._viscosityConversionsRef,
-        'FLOW_RATE': Refs._flowRateConversionsRef
+        'FLOW_RATE': Refs._flowRateConversionsRef,
+        'FLOW_RATE_MOLAR_UNITS': Refs._getMolarUnits(Refs._flowRateConversionsRef),
+        'FLOW_RATE_MASS_UNITS': Refs._getMassUnits(Refs._flowRateConversionsRef),
+        'FLOW_RATE_VOLUME_UNITS': Refs._getVolumeUnits(Refs._flowRateConversionsRef)
     };
 
     get pressureConversionsRef(): ConversionDict {
@@ -369,5 +386,81 @@ export class Refs {
 
     get flowRateConversionsRef(): ConversionDict {
         return Refs._flowRateConversionsRef;
+    }
+
+    static _getMolarUnits(data: ConversionDict | ConversionDict[]): ConversionDict {
+        const molarUnits: ConversionDict = {};
+        const molarSuffixes = ['mol', 'kmol', 'M'];
+
+        // Handle both single object and array of objects
+        const dataArray = Array.isArray(data) ? data : [data];
+
+        // Merge all dictionaries if array is provided
+        const mergedData: ConversionDict = {};
+        for (const dict of dataArray) {
+            Object.assign(mergedData, dict);
+        }
+
+        // iterate through units and check for molar suffixes
+        for (const unit of Object.keys(mergedData)) {
+            for (const suffix of molarSuffixes) {
+                if (unit.includes(suffix)) {
+                    molarUnits[unit] = mergedData[unit];
+                    break;
+                }
+            }
+        }
+        return molarUnits;
+    }
+
+    static _getMassUnits(data: ConversionDict | ConversionDict[]): ConversionDict {
+        const massUnits: ConversionDict = {};
+        const massSuffixes = ['g', 'kg', 'lb', 'tonne', 'ton', 'slug', 'oz', 'st'];
+
+        // Handle both single object and array of objects
+        const dataArray = Array.isArray(data) ? data : [data];
+
+        // Merge all dictionaries if array is provided
+        const mergedData: ConversionDict = {};
+        for (const dict of dataArray) {
+            Object.assign(mergedData, dict);
+        }
+
+        // iterate through units and check for mass suffixes
+        for (const unit of Object.keys(mergedData)) {
+            for (const suffix of massSuffixes) {
+                if (unit.includes(suffix)) {
+                    massUnits[unit] = mergedData[unit];
+                    break;
+                }
+            }
+        }
+        return massUnits;
+    }
+
+    static _getVolumeUnits(data: ConversionDict | ConversionDict[]): ConversionDict {
+        const volumeUnits: ConversionDict = {};
+        const volumeSuffixes = ['m3', 'm³', 'L', 'l', 'cm3', 'cm³', 'dm3', 'dm³', 'ft3', 'ft³', 'in3', 'in³', 'gal', 'bbl', 'barrel'];
+
+        // Handle both single object and array of objects
+        const dataArray = Array.isArray(data) ? data : [data];
+
+        // Merge all dictionaries if array is provided
+        const mergedData: ConversionDict = {};
+        for (const dict of dataArray) {
+            Object.assign(mergedData, dict);
+        }
+
+        // iterate through units and check for volume suffixes
+        for (const unit of Object.keys(mergedData)) {
+            for (const suffix of volumeSuffixes) {
+                if (unit.includes(suffix)) {
+                    volumeUnits[unit] = mergedData[unit];
+                    break;
+                }
+            }
+        }
+
+        return volumeUnits;
     }
 }

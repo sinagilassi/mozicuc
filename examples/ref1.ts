@@ -4,6 +4,7 @@
  */
 
 import * as mozicuc from '../src/index';
+import { ConversionDict } from '../src/types';
 
 // SECTION: Check References
 const references = mozicuc.listReferences();
@@ -25,3 +26,15 @@ pressureUnits.forEach((unit) => {
     const convertedValue = mozicuc.convertFromTo(P1, 'atm', unit);
     console.log(`1 atm = ${convertedValue} ${unit}`);
 });
+
+// SECTION: Enthalpy Conversion Example
+const enthalpyRefs = mozicuc.checkReference('enthalpy');
+console.log('Enthalpy References:', enthalpyRefs);
+
+
+// NOTE: get enthalpy mass units
+// const enthalpyMassUnits = mozicuc.Refs._getMassUnits(enthalpyDict);
+// console.log('Enthalpy Mass Units:', enthalpyMassUnits);
+
+
+
