@@ -44,7 +44,9 @@
     "test": "jest",
     "prepublishOnly": "npm run build:rollup && npm test",
     "watch": "tsc --watch",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "pack:check": "npm pack --dry-run",
+    "pack:make": "npm pack"
   },
   "keywords": [
     "unit-converter",
