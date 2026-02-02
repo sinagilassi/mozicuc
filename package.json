@@ -1,6 +1,6 @@
 {
   "name": "mozicuc",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Mozi Custom Unit Converter - A flexible unit conversion library for TypeScript projects.",
   "homepage": "https://github.com/sinagilassi/mozicuc#readme",
   "bugs": {
