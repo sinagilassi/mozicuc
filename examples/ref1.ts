@@ -4,7 +4,6 @@
  */
 
 import * as mozicuc from '../src/index';
-import { ConversionDict } from '../src/types';
 
 // SECTION: Check References
 const references = mozicuc.listReferences();
