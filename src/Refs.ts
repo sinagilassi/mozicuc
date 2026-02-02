@@ -388,7 +388,14 @@ export class Refs {
         return Refs._flowRateConversionsRef;
     }
 
-    static _getMolarUnits(data: ConversionDict | ConversionDict[]): ConversionDict {
+    /**
+     *  Get molar units from conversion data
+     * @param data
+     * @returns Molar units dictionary
+     */
+    static _getMolarUnits(
+        data: ConversionDict | ConversionDict[] | Array<{ unit: string; value: number }>
+    ): ConversionDict {
         const molarUnits: ConversionDict = {};
         const molarSuffixes = ['mol', 'kmol', 'M'];
 
@@ -398,7 +405,12 @@ export class Refs {
         // Merge all dictionaries if array is provided
         const mergedData: ConversionDict = {};
         for (const dict of dataArray) {
-            Object.assign(mergedData, dict);
+            // Check if it's an object with unit/value properties
+            if ('unit' in dict && 'value' in dict) {
+                mergedData[dict.unit] = dict.value;
+            } else {
+                Object.assign(mergedData, dict);
+            }
         }
 
         // iterate through units and check for molar suffixes
@@ -413,7 +425,11 @@ export class Refs {
         return molarUnits;
     }
 
-    static _getMassUnits(data: ConversionDict | ConversionDict[]): ConversionDict {
+    /** Get mass units from conversion data
+     * @param data
+     * @returns Mass units dictionary
+     */
+    static _getMassUnits(data: ConversionDict | ConversionDict[] | Array<{ unit: string; value: number }>): ConversionDict {
         const massUnits: ConversionDict = {};
         const massSuffixes = ['g', 'kg', 'lb', 'tonne', 'ton', 'slug', 'oz', 'st'];
 
@@ -423,7 +439,12 @@ export class Refs {
         // Merge all dictionaries if array is provided
         const mergedData: ConversionDict = {};
         for (const dict of dataArray) {
-            Object.assign(mergedData, dict);
+            // Check if it's an object with unit/value properties
+            if ('unit' in dict && 'value' in dict) {
+                mergedData[dict.unit] = dict.value;
+            } else {
+                Object.assign(mergedData, dict);
+            }
         }
 
         // iterate through units and check for mass suffixes
@@ -438,7 +459,11 @@ export class Refs {
         return massUnits;
     }
 
-    static _getVolumeUnits(data: ConversionDict | ConversionDict[]): ConversionDict {
+    /** Get volume units from conversion data
+     * @param data
+     * @returns Volume units dictionary
+     */
+    static _getVolumeUnits(data: ConversionDict | ConversionDict[] | Array<{ unit: string; value: number }>): ConversionDict {
         const volumeUnits: ConversionDict = {};
         const volumeSuffixes = ['m3', 'm³', 'L', 'l', 'cm3', 'cm³', 'dm3', 'dm³', 'ft3', 'ft³', 'in3', 'in³', 'gal', 'bbl', 'barrel'];
 
@@ -448,7 +473,12 @@ export class Refs {
         // Merge all dictionaries if array is provided
         const mergedData: ConversionDict = {};
         for (const dict of dataArray) {
-            Object.assign(mergedData, dict);
+            // Check if it's an object with unit/value properties
+            if ('unit' in dict && 'value' in dict) {
+                mergedData[dict.unit] = dict.value;
+            } else {
+                Object.assign(mergedData, dict);
+            }
         }
 
         // iterate through units and check for volume suffixes
