@@ -27,6 +27,7 @@ export {
     DESCRIPTION,
     checkVersion,
     checkReference,
+    getReferenceUnits,
     go,
     goFromContent,
     createCuc,

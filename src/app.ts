@@ -58,6 +58,27 @@ export function checkReference(
     }
 }
 
+
+/** Get all units for a given reference
+ * @param reference - Reference name such as 'pressure', 'temperature', 'custom'
+ * @returns Array of unit strings
+ *
+ * @example
+ * ```typescript
+ * // Get pressure units
+ * console.log(getReferenceUnits('pressure'));
+ * ```
+ */
+export function getReferenceUnits(reference: string): string[] {
+    try {
+        const cucC = new CustomUnitConverter(0, '');
+        const refData = cucC.checkReference(reference, true) as ConversionDict;
+        return Object.keys(refData);
+    } catch (error) {
+        throw new Error(`Getting reference units failed! ${error}`);
+    }
+}
+
 /**
  * Initializes app with default built-in references (works in browser and Node.js)
  * @returns CustomUnitConverter object
