@@ -31,10 +31,26 @@ pressureUnits.forEach((unit) => {
 const enthalpyRefs = mozicuc.checkReference('enthalpy');
 console.log('Enthalpy References:', enthalpyRefs);
 
-
 // NOTE: get enthalpy mass units
-// const enthalpyMassUnits = mozicuc.Refs._getMassUnits(enthalpyDict);
-// console.log('Enthalpy Mass Units:', enthalpyMassUnits);
+const enthalpyMassUnits = mozicuc.Refs._getMassUnits(enthalpyRefs);
+console.log('Enthalpy Mass Units:', enthalpyMassUnits);
+
+// NOTE: get enthalpy molar units
+const enthalpyMolarUnits = mozicuc.Refs._getMolarUnits(enthalpyRefs);
+console.log('Enthalpy Molar Units:', enthalpyMolarUnits);
+
+// SECTION: Flowrate Conversion Example
+const flowrateRefs = mozicuc.checkReference('flow_rate');
+console.log('Flowrate References:', flowrateRefs);
+
+// NOTE: get flowrate volumetric units
+const flowrateVolumetricUnits = mozicuc.Refs._getVolumeUnits(flowrateRefs);
+console.log('Flowrate Volumetric Units:', flowrateVolumetricUnits);
+
+// NOTE: get flowrate mass units
+const flowrateMassUnits = mozicuc.Refs._getMassUnits(flowrateRefs);
+console.log('Flowrate Mass Units:', flowrateMassUnits);
+
 
 
 
