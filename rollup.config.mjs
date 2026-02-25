@@ -51,12 +51,12 @@ export default [
         input: 'src/node.ts',
         output: [
             {
-                file: 'dist/app.node.cjs.js',
+                file: 'dist/app.node.cjs',
                 format: 'cjs',
                 sourcemap: true,
             },
             {
-                file: 'dist/app.node.esm.js',
+                file: 'dist/app.node.mjs',
                 format: 'esm',
                 sourcemap: true,
             },
