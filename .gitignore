@@ -24,7 +24,6 @@ yarn-error.log*
 .env.*
 
 # IDE files
-.vscode/
 .idea/
 
 # OS files
