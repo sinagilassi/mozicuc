@@ -1,10 +1,7 @@
-import typescript from 'rollup-plugin-typescript2';
+import typescript from '@rollup/plugin-typescript';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import { readFileSync } from 'fs';
-import { createRequire } from 'module';
-
-const require = createRequire(import.meta.url);
 const packageJson = JSON.parse(readFileSync('./package.json', 'utf8'));
 
 export default [
@@ -33,16 +30,17 @@ export default [
             },
         ],
         plugins: [
-            nodeResolve({
-                preferBuiltins: false,
-            }),
-            commonjs(),
             typescript({
-                typescript: require('typescript'),
+                tsconfig: './tsconfig.json',
                 declaration: true,
                 declarationDir: 'dist',
                 rootDir: './src',
             }),
+            nodeResolve({
+                preferBuiltins: false,
+                extensions: ['.mjs', '.js', '.json', '.node', '.ts'],
+            }),
+            commonjs(),
         ],
         external: ['js-yaml'], // Mark external dependencies (no fs here for browser compat)
     },
@@ -62,16 +60,17 @@ export default [
             },
         ],
         plugins: [
-            nodeResolve({
-                preferBuiltins: true, // Use Node.js built-ins for this entry point
-            }),
-            commonjs(),
             typescript({
-                typescript: require('typescript'),
+                tsconfig: './tsconfig.json',
                 declaration: true,
                 declarationDir: 'dist',
                 rootDir: './src',
             }),
+            nodeResolve({
+                preferBuiltins: true, // Use Node.js built-ins for this entry point
+                extensions: ['.mjs', '.js', '.json', '.node', '.ts'],
+            }),
+            commonjs(),
         ],
         external: ['js-yaml', 'fs'], // Mark external dependencies including fs
     }
