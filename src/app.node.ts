@@ -5,9 +5,7 @@
  */
 
 import * as fs from 'fs';
-import * as yaml from 'js-yaml';
 import { CustomUnitConverter } from './CustomUnitConverter';
-import { CustomUnitFile } from './types';
 
 /**
  * Initializes app with external YAML file (Node.js only)
