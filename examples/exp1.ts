@@ -88,31 +88,29 @@ console.log(`  25 J/mol.K = ${myCuc3.convert('J/mol.K')} J/mol.K`);
 console.log(`  25 J/mol.K = ${myCuc3.convert('kJ/mol.K')} kJ/mol.K\n`);
 
 // ============================================
-// SECTION 6: Using go() function
+// SECTION 6: Using convertFromTo() function
 // ============================================
-console.log('─── 6. Using go() Function ───');
-
-const converter = mozicuc.go();
+console.log('─── 6. Using convertFromTo() Function ───');
 
 // Pressure conversions
 console.log('Pressure conversions:');
-console.log(`  100 bar => psi: ${converter.fromTo(100, 'bar', 'psi').toFixed(2)}`);
-console.log(`  1 atm => Pa: ${converter.fromTo(1, 'atm', 'Pa').toFixed(2)}`);
+console.log(`  100 bar => psi: ${mozicuc.convertFromTo(100, 'bar', 'psi').toFixed(2)}`);
+console.log(`  1 atm => Pa: ${mozicuc.convertFromTo(1, 'atm', 'Pa').toFixed(2)}`);
 
 // Temperature conversions
 console.log('\nTemperature conversions:');
-console.log(`  0 C => F: ${converter.fromTo(0, 'C', 'F')}`);
-console.log(`  100 C => K: ${converter.fromTo(100, 'C', 'K').toFixed(2)}`);
+console.log(`  0 C => F: ${mozicuc.convertFromTo(0, 'C', 'F')}`);
+console.log(`  100 C => K: ${mozicuc.convertFromTo(100, 'C', 'K').toFixed(2)}`);
 
 // Volume conversions
 console.log('\nVolume conversions:');
-// console.log(`  1 m3 => L: ${converter.fromTo(1, 'm3', 'L')}`);
-// console.log(`  1 L => cm3: ${converter.fromTo(1, 'L', 'cm3')}`);
+// console.log(`  1 m3 => L: ${mozicuc.convertFromTo(1, 'm3', 'L')}`);
+// console.log(`  1 L => cm3: ${mozicuc.convertFromTo(1, 'L', 'cm3')}`);
 
 // Energy conversions
 console.log('\nEnergy conversions:');
-// console.log(`  1000 J => kJ: ${converter.fromTo(1000, 'J', 'kJ')}`);
-// console.log(`  1 kWh => J: ${converter.fromTo(1, 'kWh', 'J')}\n`);
+// console.log(`  1000 J => kJ: ${mozicuc.convertFromTo(1000, 'J', 'kJ')}`);
+// console.log(`  1 kWh => J: ${mozicuc.convertFromTo(1, 'kWh', 'J')}\n`);
 
 // ============================================
 // SECTION 7: Adding Custom Units to go()
@@ -124,9 +122,9 @@ console.log('\nEnergy conversions:');
 // converter.addCustomUnit('banana', 0.5);
 
 // console.log('Added fruit units:');
-// console.log(`  10 apples => oranges: ${converter.fromTo(10, 'apple', 'orange')}`);
-// console.log(`  10 apples => bananas: ${converter.fromTo(10, 'apple', 'banana')}`);
-// console.log(`  5 oranges => apples: ${converter.fromTo(5, 'orange', 'apple')}\n`);
+// console.log(`  10 apples => oranges: ${mozicuc.convertFromTo(10, 'apple', 'orange')}`);
+// console.log(`  10 apples => bananas: ${mozicuc.convertFromTo(10, 'apple', 'banana')}`);
+// console.log(`  5 oranges => apples: ${mozicuc.convertFromTo(5, 'orange', 'apple')}\n`);
 
 // ============================================
 // SECTION 8: Checking References

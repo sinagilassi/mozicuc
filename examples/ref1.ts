@@ -50,6 +50,10 @@ console.log('Flowrate Volumetric Units:', flowrateVolumetricUnits);
 const flowrateMassUnits = mozicuc.Refs._getMassUnits(flowrateRefs);
 console.log('Flowrate Mass Units:', flowrateMassUnits);
 
+// NOTE: molecular weight conversion example
+const mwRefs = mozicuc.checkReference('molecular_weight');
+console.log('Molecular Weight References:', mwRefs);
+
 
 
 
