@@ -11,14 +11,19 @@ export class CustomUnitConverter extends Utils {
     private _pressureConversions: ConversionDict = {};
     private _temperatureConversions: ConversionDict = {};
     private _densityConversions: ConversionDict = {};
+    private _concentrationConversions: ConversionDict = {};
     private _energyConversions: ConversionDict = {};
+    private _energyRateConversions: ConversionDict = {};
     private _gibbsFreeEnergyConversions: ConversionDict = {};
     private _enthalpyConversions: ConversionDict = {};
     private _heatCapacityConversions: ConversionDict = {};
+    private _heatTransferCoefficientConversions: ConversionDict = {};
     private _volumeConversions: ConversionDict = {};
     private _massConversions: ConversionDict = {};
+    private _molecularWeightConversions: ConversionDict = {};
     private _powerConversions: ConversionDict = {};
     private _lengthConversions: ConversionDict = {};
+    private _areaConversions: ConversionDict = {};
     private _forceConversions: ConversionDict = {};
     private _viscosityConversions: ConversionDict = {};
     private _flowRateConversions: ConversionDict = {};
@@ -42,14 +47,19 @@ export class CustomUnitConverter extends Utils {
         this._pressureConversions = this.refs.pressureConversionsRef;
         this._temperatureConversions = this.refs.temperatureConversionsRef;
         this._densityConversions = this.refs.densityConversionsRef;
+        this._concentrationConversions = this.refs.concentrationConversionsRef;
         this._energyConversions = this.refs.energyConversionsRef;
+        this._energyRateConversions = this.refs.energyRateConversionsRef;
         this._gibbsFreeEnergyConversions = this.refs.gibbsFreeEnergyConversionsRef;
         this._enthalpyConversions = this.refs.enthalpyConversionsRef;
         this._heatCapacityConversions = this.refs.heatCapacityConversionsRef;
+        this._heatTransferCoefficientConversions = this.refs.heatTransferCoefficientRef;
         this._volumeConversions = this.refs.volumeConversionsRef;
         this._massConversions = this.refs.massConversionsRef;
+        this._molecularWeightConversions = this.refs.molecularWeightConversionsRef;
         this._powerConversions = this.refs.powerConversionsRef;
         this._lengthConversions = this.refs.lengthConversionsRef;
+        this._areaConversions = this.refs.areaConversionsRef;
         this._forceConversions = this.refs.forceConversionsRef;
         this._viscosityConversions = this.refs.viscosityConversionsRef;
         this._flowRateConversions = this.refs.flowRateConversionsRef;
@@ -77,14 +87,19 @@ export class CustomUnitConverter extends Utils {
                 'TEMPERATURE': this._temperatureConversions,
                 'CUSTOM': this._customConversionsFull['CUSTOM'],
                 'DENSITY': this._densityConversions,
+                'CONCENTRATION': this._concentrationConversions,
                 'ENERGY': this._energyConversions,
+                'ENERGY_RATE': this._energyRateConversions,
                 'GIBBS_FREE_ENERGY': this._gibbsFreeEnergyConversions,
                 'ENTHALPY': this._enthalpyConversions,
                 'HEAT_CAPACITY': this._heatCapacityConversions,
+                'HEAT_TRANSFER_COEFFICIENT': this._heatTransferCoefficientConversions,
                 'VOLUME': this._volumeConversions,
                 'MASS': this._massConversions,
+                'MOLECULAR_WEIGHT': this._molecularWeightConversions,
                 'POWER': this._powerConversions,
                 'LENGTH': this._lengthConversions,
+                'AREA': this._areaConversions,
                 'FORCE': this._forceConversions,
                 'VISCOSITY': this._viscosityConversions,
                 'FLOW_RATE': this._flowRateConversions
@@ -130,22 +145,32 @@ export class CustomUnitConverter extends Utils {
                 return 'TEMPERATURE';
             } else if (fromUnit in this._densityConversions && toUnit in this._densityConversions) {
                 return 'DENSITY';
+            } else if (fromUnit in this._concentrationConversions && toUnit in this._concentrationConversions) {
+                return 'CONCENTRATION';
             } else if (fromUnit in this._energyConversions && toUnit in this._energyConversions) {
                 return 'ENERGY';
+            } else if (fromUnit in this._energyRateConversions && toUnit in this._energyRateConversions) {
+                return 'ENERGY_RATE';
             } else if (fromUnit in this._gibbsFreeEnergyConversions && toUnit in this._gibbsFreeEnergyConversions) {
                 return 'GIBBS_FREE_ENERGY';
             } else if (fromUnit in this._enthalpyConversions && toUnit in this._enthalpyConversions) {
                 return 'ENTHALPY';
             } else if (fromUnit in this._heatCapacityConversions && toUnit in this._heatCapacityConversions) {
                 return 'HEAT_CAPACITY';
+            } else if (fromUnit in this._heatTransferCoefficientConversions && toUnit in this._heatTransferCoefficientConversions) {
+                return 'HEAT_TRANSFER_COEFFICIENT';
             } else if (fromUnit in this._volumeConversions && toUnit in this._volumeConversions) {
                 return 'VOLUME';
             } else if (fromUnit in this._massConversions && toUnit in this._massConversions) {
                 return 'MASS';
+            } else if (fromUnit in this._molecularWeightConversions && toUnit in this._molecularWeightConversions) {
+                return 'MOLECULAR_WEIGHT';
             } else if (fromUnit in this._powerConversions && toUnit in this._powerConversions) {
                 return 'POWER';
             } else if (fromUnit in this._lengthConversions && toUnit in this._lengthConversions) {
                 return 'LENGTH';
+            } else if (fromUnit in this._areaConversions && toUnit in this._areaConversions) {
+                return 'AREA';
             } else if (fromUnit in this._forceConversions && toUnit in this._forceConversions) {
                 return 'FORCE';
             } else if (fromUnit in this._viscosityConversions && toUnit in this._viscosityConversions) {
@@ -195,14 +220,19 @@ export class CustomUnitConverter extends Utils {
                 'PRESSURE': (u) => this.convertPressure(u),
                 'TEMPERATURE': (u) => this.convertTemperature(u),
                 'DENSITY': (u) => this.convertX(u, 'DENSITY'),
+                'CONCENTRATION': (u) => this.convertX(u, 'CONCENTRATION'),
                 'ENERGY': (u) => this.convertX(u, 'ENERGY'),
+                'ENERGY_RATE': (u) => this.convertX(u, 'ENERGY_RATE'),
                 'GIBBS_FREE_ENERGY': (u) => this.convertX(u, 'GIBBS_FREE_ENERGY'),
                 'ENTHALPY': (u) => this.convertX(u, 'ENTHALPY'),
                 'HEAT_CAPACITY': (u) => this.convertX(u, 'HEAT_CAPACITY'),
+                'HEAT_TRANSFER_COEFFICIENT': (u) => this.convertX(u, 'HEAT_TRANSFER_COEFFICIENT'),
                 'VOLUME': (u) => this.convertX(u, 'VOLUME'),
                 'MASS': (u) => this.convertX(u, 'MASS'),
+                'MOLECULAR_WEIGHT': (u) => this.convertX(u, 'MOLECULAR_WEIGHT'),
                 'POWER': (u) => this.convertX(u, 'POWER'),
                 'LENGTH': (u) => this.convertX(u, 'LENGTH'),
+                'AREA': (u) => this.convertX(u, 'AREA'),
                 'FORCE': (u) => this.convertX(u, 'FORCE'),
                 'VISCOSITY': (u) => this.convertX(u, 'VISCOSITY'),
                 'FLOW_RATE': (u) => this.convertX(u, 'FLOW_RATE'),

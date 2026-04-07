@@ -13,7 +13,7 @@ A flexible and comprehensive unit conversion library for TypeScript/JavaScript a
 
 ## 🌟 Features
 
-- 🔄 **Multiple Unit Types**: Pressure, Temperature, Density, Energy, Gibbs Free Energy, Enthalpy, Heat Capacity, Volume, Mass, Power, Length, Force
+- 🔄 **Multiple Unit Types**: Pressure, Temperature, Density, Concentration, Energy, Energy Rate, Gibbs Free Energy, Enthalpy, Heat Capacity, Heat Transfer Coefficient, Volume, Mass, Molecular Weight, Power, Length, Area, Force, Viscosity, Flow Rate
 - 🎯 **Type-Safe**: Full TypeScript support with type definitions
 - 🔧 **Customizable**: Add custom units dynamically or via YAML files
 - 📦 **Lightweight**: Minimal dependencies (only `js-yaml` for custom unit loading)
@@ -230,7 +230,7 @@ console.log(converter.convert(30, 'mpg', 'kml'));
 Get package version.
 
 ```typescript
-console.log(checkVersion());  // "1.0.0"
+console.log(checkVersion());  // "1.2.0"
 ```
 
 #### `checkReference(reference, asObject?)`
@@ -284,9 +284,17 @@ console.log(info.version, info.description);
 
 `g/cm3`, `kg/dm3`, `t/m3`, `kg/m3`, `lb/ft3`, `lb/in3`
 
+### Concentration
+
+`mol/m3`, `mol/cm3`, `mol/dm3`, `mol/L`, `mol/mL`, `mol/ft3`, `kmol/m3`, `M`, `mM`, `uM`, `μM`, `µM`, `nM`, `pM`
+
 ### Energy
 
 `J`, `kJ`, `cal`, `kcal`, `Wh`, `kWh`, `BTU`, `ft-lb`
+
+### Energy Rate
+
+`W`, `kW`, `MW`, `GW`, `HP`, `BTU/s`, `BTU/min`, `BTU/h`, `ft-lb/min`, `cal/s`, `kcal/s`, `cal/min`, `kcal/min`
 
 ### Gibbs Free Energy & Enthalpy
 
@@ -296,6 +304,10 @@ console.log(info.version, info.description);
 
 `J/kg.K`, `kJ/kg.K`, `cal/kg.K`, `kcal/kg.K`, `cal/g.K`, `J/g.K`, `kJ/g.K`, `BTU/lb.F`, `J/mol.K`, `kJ/mol.K`, `cal/mol.K`, `kcal/mol.K`, `cal/kmol.K`, `kcal/kmol.K`, `J/kmol.K`, `kJ/kmol.K`
 
+### Heat Transfer Coefficient
+
+`W/m2.K`, `W/m².K`, `W/m2K`, `kW/m2.K`, `W/cm2.K`, `W/mm2.K`, `W/ft2.K`, `BTU/(hr.ft2.F)`, `BTU/hr.ft2.F`, `kcal/(hr.m2.K)`
+
 ### Volume
 
 `m3`, `L`, `cm3`, `dm3`, `ft3`, `in3`, `gal(US)`, `gal(UK)`
@@ -304,6 +316,10 @@ console.log(info.version, info.description);
 
 `kg`, `g`, `mg`, `lb`, `oz`, `t`, `st`
 
+### Molecular Weight
+
+`g/mol`, `kg/kmol`, `lb/lbmol`, `kg/mol`, `mg/mol`, `g/kmol`, `lb/mol`
+
 ### Power
 
 `W`, `kW`, `MW`, `GW`, `HP`, `BTU/h`, `ft-lb/min`
@@ -311,6 +327,10 @@ console.log(info.version, info.description);
 ### Length
 
 `m`, `cm`, `mm`, `km`, `ft`, `in`, `yd`, `mi`
+
+### Area
+
+`m2`, `cm2`, `mm2`, `km2`, `dm2`, `ft2`, `in2`, `yd2`, `ha`, `hectare`, `acre`
 
 ### Force
 

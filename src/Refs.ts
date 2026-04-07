@@ -12,6 +12,7 @@ export class Refs {
         'MPa': 0.1,
         'kg/cm2': 1.01972,
         'kg/cm²': 1.01972,
+        'kg/cmÂ²': 1.01972,
         'atm': 0.986923,
         'mmHg': 750.062,
         'mmH2O': 10197.162129779,
@@ -32,10 +33,14 @@ export class Refs {
 
     // Density Conversions
     private static readonly _densityConversionsRef: ConversionDict = {
-        // ! mass per volume
+        // mass per volume
         'g/cm3': 1.0,
         'g/cm³': 1.0,
+        'g/cmÂ³': 1.0,
         'kg/L': 1.0,
+        'g/m3': 1000000.0,
+        'g/m³': 1000000.0,
+        'g/mÂ³': 1000000.0,
         'kg/dL': 10.0,
         'g/L': 0.001,
         'g/l': 0.001,
@@ -43,40 +48,84 @@ export class Refs {
         'g/ml': 1.0,
         'kg/dm3': 1.0,
         'kg/dm³': 1.0,
+        'kg/dmÂ³': 1.0,
         't/m3': 1.0,
         't/m³': 1.0,
+        't/mÂ³': 1.0,
         'tonne/m3': 1.0,
         'tonne/m³': 1.0,
+        'tonne/mÂ³': 1.0,
         'kg/m3': 1000.0,
         'kg/m³': 1000.0,
+        'kg/mÂ³': 1000.0,
         'lb/ft3': 62.42796,
         'lb/ft³': 62.42796,
+        'lb/ftÂ³': 62.42796,
         'lb/in3': 27.6799,
         'lb/in³': 27.6799,
+        'lb/inÂ³': 27.6799,
         'sg': 1.0,
         'oz/gal': 133.526,
-        // ! mole per volume
+        // mole per volume
         'kmol/m3': 1.0,
         'kmol/m³': 1.0,
+        'kmol/mÂ³': 1.0,
         'mol/m3': 1000.0,
         'mol/m³': 1000.0,
+        'mol/mÂ³': 1000.0,
         'kmol/dm3': 0.001,
         'kmol/dm³': 0.001,
+        'kmol/dmÂ³': 0.001,
         'mol/dm3': 1.0,
         'mol/dm³': 1.0,
+        'mol/dmÂ³': 1.0,
         'kmol/cm3': 1e-6,
         'kmol/cm³': 1e-6,
+        'kmol/cmÂ³': 1e-6,
         'mol/cm3': 0.001,
         'mol/cm³': 0.001,
+        'mol/cmÂ³': 0.001,
         'mol/L': 1.0,
         'mol/l': 1.0,
         'M': 1.0,
         'kmol/L': 0.001,
         'kmol/l': 0.001,
-        'mol/ft3': 35.3147,
-        'mol/ft³': 35.3147,
-        'kmol/ft3': 0.0353147,
-        'kmol/ft³': 0.0353147
+        'mol/ft3': 28.3168466,
+        'mol/ft³': 28.3168466,
+        'mol/ftÂ³': 28.3168466,
+        'kmol/ft3': 0.0283168466,
+        'kmol/ft³': 0.0283168466,
+        'kmol/ftÂ³': 0.0283168466
+    };
+
+    // Concentration Conversions (base mol/m3)
+    private static readonly _concentrationConversionsRef: ConversionDict = {
+        'mol/m3': 1.0,
+        'mol/m³': 1.0,
+        'mol/mÂ³': 1.0,
+        'mol/cm3': 1.0e-6,
+        'mol/cm³': 1.0e-6,
+        'mol/cmÂ³': 1.0e-6,
+        'mol/dm3': 0.001,
+        'mol/dm³': 0.001,
+        'mol/dmÂ³': 0.001,
+        'mol/L': 0.001,
+        'mol/l': 0.001,
+        'mol/mL': 1.0e-6,
+        'mol/ml': 1.0e-6,
+        'mol/ft3': 0.0283168466,
+        'mol/ft³': 0.0283168466,
+        'mol/ftÂ³': 0.0283168466,
+        'kmol/m3': 0.001,
+        'kmol/m³': 0.001,
+        'kmol/mÂ³': 0.001,
+        'M': 0.001,
+        'mM': 1.0,
+        'uM': 1000.0,
+        'μM': 1000.0,
+        'µM': 1000.0,
+        'nM': 1.0e6,
+        'pM': 1.0e9
     };
 
     // Energy Conversions
@@ -91,9 +140,25 @@ export class Refs {
         'ft-lb': 0.737562
     };
 
+    // Energy Rate Conversions
+    private static readonly _energyRateConversionsRef: ConversionDict = {
+        'W': 1.0,
+        'kW': 0.001,
+        'MW': 1e-6,
+        'GW': 1e-9,
+        'HP': 0.00134102,
+        'BTU/s': 0.000947817,
+        'BTU/min': 0.056869,
+        'BTU/h': 3.41214,
+        'ft-lb/min': 0.737562,
+        'cal/s': 0.239006,
+        'kcal/s': 0.000239006,
+        'cal/min': 0.00398344,
+        'kcal/min': 3.98344e-6
+    };
+
     // Gibbs Free Energy Conversions
     private static readonly _gibbsFreeEnergyConversionsRef: ConversionDict = {
-        // ! molar basis
         'J/mol': 1.0,
         'kJ/mol': 0.001,
         'J/kmol': 1000.0,
@@ -101,7 +166,6 @@ export class Refs {
         'kcal/mol': 0.0002390057,
         'kcal/kmol': 0.2390057,
         'cal/kmol': 239.0057,
-        // ! mass basis
         'J/kg': 1.0,
         'kJ/kg': 0.001,
         'cal/g': 0.000239006,
@@ -109,12 +173,11 @@ export class Refs {
         'J/g': 0.001,
         'kJ/g': 1.0e-6,
         'cal/kg': 0.239006,
-        'kcal/kg': 0.000239006,
+        'kcal/kg': 0.000239006
     };
 
     // Enthalpy Conversions
     private static readonly _enthalpyConversionsRef: ConversionDict = {
-        // ! molar basis
         'J/mol': 1.0,
         'kJ/mol': 0.001,
         'J/kmol': 1000.0,
@@ -122,7 +185,6 @@ export class Refs {
         'kcal/mol': 0.0002390057,
         'kcal/kmol': 0.2390057,
         'cal/kmol': 239.0057,
-        // ! mass basis
         'J/kg': 1.0,
         'kJ/kg': 0.001,
         'cal/g': 0.000239006,
@@ -130,12 +192,11 @@ export class Refs {
         'J/g': 0.001,
         'kJ/g': 1.0e-6,
         'cal/kg': 0.239006,
-        'kcal/kg': 0.000239006,
+        'kcal/kg': 0.000239006
     };
 
     // Heat Capacity Conversions
     private static readonly _heatCapacityConversionsRef: ConversionDict = {
-        // ! mass basis
         'J/kg.K': 1.0,
         'kJ/kg.K': 0.001,
         'cal/kg.K': 0.239006,
@@ -144,7 +205,6 @@ export class Refs {
         'J/g.K': 0.001,
         'kJ/g.K': 1.0e-6,
         'BTU/lb.F': 0.000238846,
-        // ! molar basis
         'J/mol.K': 1.0,
         'kJ/mol.K': 0.001,
         'cal/mol.K': 0.239005736,
@@ -152,22 +212,56 @@ export class Refs {
         'cal/kmol.K': 239.0057,
         'kcal/kmol.K': 0.2390057,
         'J/kmol.K': 1000.0,
-        'kJ/kmol.K': 1.0,
+        'kJ/kmol.K': 1.0
+    };
+
+    // Heat Transfer Coefficient Conversions
+    private static readonly _heatTransferCoefficientRef: ConversionDict = {
+        'W/m2.K': 1.0,
+        'W/m².K': 1.0,
+        'W/mÂ².K': 1.0,
+        'W/m2K': 1.0,
+        'W/m²K': 1.0,
+        'W/mÂ²K': 1.0,
+        'kW/m2.K': 0.001,
+        'kW/m².K': 0.001,
+        'kW/mÂ².K': 0.001,
+        'W/cm2.K': 1.0e-4,
+        'W/cm².K': 1.0e-4,
+        'W/cmÂ².K': 1.0e-4,
+        'W/mm2.K': 1.0e-6,
+        'W/mm².K': 1.0e-6,
+        'W/mmÂ².K': 1.0e-6,
+        'W/ft2.K': 0.092903,
+        'W/ft².K': 0.092903,
+        'W/ftÂ².K': 0.092903,
+        'BTU/(hr.ft2.F)': 0.1761101838,
+        'BTU/(hr.ft².F)': 0.1761101838,
+        'BTU/(hr.ftÂ².F)': 0.1761101838,
+        'BTU/hr.ft2.F': 0.1761101838,
+        'kcal/(hr.m2.K)': 0.859845,
+        'kcal/(hr.m².K)': 0.859845,
+        'kcal/(hr.mÂ².K)': 0.859845
     };
 
     // Volume Conversions
     private static readonly _volumeConversionsRef: ConversionDict = {
         'm3': 1.0,
         'm³': 1.0,
+        'mÂ³': 1.0,
         'L': 1000.0,
         'cm3': 1000000.0,
         'cm³': 1000000.0,
+        'cmÂ³': 1000000.0,
         'dm3': 1000.0,
         'dm³': 1000.0,
+        'dmÂ³': 1000.0,
         'ft3': 35.3147,
         'ft³': 35.3147,
+        'ftÂ³': 35.3147,
         'in3': 61023.7,
         'in³': 61023.7,
+        'inÂ³': 61023.7,
         'gal(US)': 264.172,
         'gal(UK)': 219.969
     };
@@ -181,6 +275,17 @@ export class Refs {
         'oz': 35.274,
         't': 0.001,
         'st': 0.157473
+    };
+
+    // Molecular Weight Conversions (base g/mol)
+    private static readonly _molecularWeightConversionsRef: ConversionDict = {
+        'g/mol': 1.0,
+        'kg/kmol': 1.0,
+        'lb/lbmol': 1.0,
+        'kg/mol': 0.001,
+        'mg/mol': 1000.0,
+        'g/kmol': 1000.0,
+        'lb/mol': 0.00220462
     };
 
     // Power Conversions
@@ -206,6 +311,37 @@ export class Refs {
         'mi': 0.000621371
     };
 
+    // Area Conversions
+    private static readonly _areaConversionsRef: ConversionDict = {
+        'm2': 1.0,
+        'm²': 1.0,
+        'mÂ²': 1.0,
+        'cm2': 10000.0,
+        'cm²': 10000.0,
+        'cmÂ²': 10000.0,
+        'mm2': 1.0e6,
+        'mm²': 1.0e6,
+        'mmÂ²': 1.0e6,
+        'km2': 1.0e-6,
+        'km²': 1.0e-6,
+        'kmÂ²': 1.0e-6,
+        'dm2': 100.0,
+        'dm²': 100.0,
+        'dmÂ²': 100.0,
+        'ft2': 10.7639,
+        'ft²': 10.7639,
+        'ftÂ²': 10.7639,
+        'in2': 1550.0031,
+        'in²': 1550.0031,
+        'inÂ²': 1550.0031,
+        'yd2': 1.19599,
+        'yd²': 1.19599,
+        'ydÂ²': 1.19599,
+        'ha': 1.0e-4,
+        'hectare': 1.0e-4,
+        'acre': 2.47105e-4
+    };
+
     // Force Conversions
     private static readonly _forceConversionsRef: ConversionDict = {
         'N': 1.0,
@@ -225,14 +361,17 @@ export class Refs {
         'g/cm.s': 1.0,
         'N.s/m2': 0.1,
         'N.s/m²': 0.1,
+        'N.s/mÂ²': 0.1,
         'μP': 1e6,
+        'µP': 1e6,
+        'Î¼P': 1e6,
         'lb/ft.s': 0.671968,
         'lb/ft.h': 241.908
     };
 
     // Flow Rate Conversions
     private static readonly _flowRateConversionsRef: ConversionDict = {
-        // ! molar basis
+        // molar basis
         'mol/s': 1.0,
         'mmol/s': 1000.0,
         'kmol/s': 0.001,
@@ -243,7 +382,7 @@ export class Refs {
         'kmol/h': 3.6,
         'kmol/hr': 3.6,
         'kmol/day': 86400.0,
-        // ! mass basis
+        // mass basis
         'kg/s': 1.0,
         'g/s': 1000.0,
         'kg/min': 60.0,
@@ -267,23 +406,28 @@ export class Refs {
         'slug/day': 1260912.0,
         'tonne/h': 3.6,
         'tonne/hr': 3.6,
-        // ! volume basis
+        // volume basis
         'm3/s': 1.0,
         'm³/s': 1.0,
+        'mÂ³/s': 1.0,
         'L/s': 1000.0,
         'l/s': 1000.0,
         'cm3/s': 1e6,
         'cm³/s': 1e6,
+        'cmÂ³/s': 1e6,
         'mL/s': 1e6,
         'm3/min': 60.0,
         'm³/min': 60.0,
+        'mÂ³/min': 60.0,
         'L/min': 60000.0,
         'l/min': 60000.0,
         'mL/min': 6e7,
         'm3/h': 3600.0,
         'm³/h': 3600.0,
+        'mÂ³/h': 3600.0,
         'm3/hr': 3600.0,
         'm³/hr': 3600.0,
+        'mÂ³/hr': 3600.0,
         'L/h': 3600000.0,
         'L/hr': 3600000.0,
         'l/h': 3600000.0,
@@ -291,12 +435,16 @@ export class Refs {
         'mL/h': 3.6e9,
         'ft3/s': 35.3147,
         'ft³/s': 35.3147,
+        'ftÂ³/s': 35.3147,
         'ft3/min': 2118.88,
         'ft³/min': 2118.88,
+        'ftÂ³/min': 2118.88,
         'ft3/h': 127132.8,
         'ft³/h': 127132.8,
+        'ftÂ³/h': 127132.8,
         'ft3/hr': 127132.8,
         'ft³/hr': 127132.8,
+        'ftÂ³/hr': 127132.8,
         'gal/s': 264.172,
         'gal/min': 15850.3,
         'bbl/day': 1.84013e-6,
@@ -308,25 +456,32 @@ export class Refs {
         'PRESSURE': Refs._pressureConversionsRef,
         'TEMPERATURE': Refs._temperatureConversionsRef,
         'DENSITY': Refs._densityConversionsRef,
-        'DENSITY_MOLAR_UNITS': Refs._getMolarUnits(Refs._densityConversionsRef),
-        'DENSITY_MASS_UNITS': Refs._getMassUnits(Refs._densityConversionsRef),
+        'CONCENTRATION': Refs._concentrationConversionsRef,
         'ENERGY': Refs._energyConversionsRef,
+        'ENERGY_RATE': Refs._energyRateConversionsRef,
         'GIBBS_FREE_ENERGY': Refs._gibbsFreeEnergyConversionsRef,
-        'GIBBS_FREE_ENERGY_MOLAR_UNITS': Refs._getMolarUnits(Refs._gibbsFreeEnergyConversionsRef),
-        'GIBBS_FREE_ENERGY_MASS_UNITS': Refs._getMassUnits(Refs._gibbsFreeEnergyConversionsRef),
         'ENTHALPY': Refs._enthalpyConversionsRef,
-        'ENTHALPY_MOLAR_UNITS': Refs._getMolarUnits(Refs._enthalpyConversionsRef),
-        'ENTHALPY_MASS_UNITS': Refs._getMassUnits(Refs._enthalpyConversionsRef),
         'HEAT_CAPACITY': Refs._heatCapacityConversionsRef,
-        'HEAT_CAPACITY_MOLAR_UNITS': Refs._getMolarUnits(Refs._heatCapacityConversionsRef),
-        'HEAT_CAPACITY_MASS_UNITS': Refs._getMassUnits(Refs._heatCapacityConversionsRef),
+        'HEAT_TRANSFER_COEFFICIENT': Refs._heatTransferCoefficientRef,
         'VOLUME': Refs._volumeConversionsRef,
         'MASS': Refs._massConversionsRef,
+        'MOLECULAR_WEIGHT': Refs._molecularWeightConversionsRef,
         'POWER': Refs._powerConversionsRef,
         'LENGTH': Refs._lengthConversionsRef,
+        'AREA': Refs._areaConversionsRef,
         'FORCE': Refs._forceConversionsRef,
         'VISCOSITY': Refs._viscosityConversionsRef,
         'FLOW_RATE': Refs._flowRateConversionsRef,
+
+        // Deprecated compatibility aliases
+        'DENSITY_MOLAR_UNITS': Refs._getMolarUnits(Refs._densityConversionsRef),
+        'DENSITY_MASS_UNITS': Refs._getMassUnits(Refs._densityConversionsRef),
+        'GIBBS_FREE_ENERGY_MOLAR_UNITS': Refs._getMolarUnits(Refs._gibbsFreeEnergyConversionsRef),
+        'GIBBS_FREE_ENERGY_MASS_UNITS': Refs._getMassUnits(Refs._gibbsFreeEnergyConversionsRef),
+        'ENTHALPY_MOLAR_UNITS': Refs._getMolarUnits(Refs._enthalpyConversionsRef),
+        'ENTHALPY_MASS_UNITS': Refs._getMassUnits(Refs._enthalpyConversionsRef),
+        'HEAT_CAPACITY_MOLAR_UNITS': Refs._getMolarUnits(Refs._heatCapacityConversionsRef),
+        'HEAT_CAPACITY_MASS_UNITS': Refs._getMassUnits(Refs._heatCapacityConversionsRef),
         'FLOW_RATE_MOLAR_UNITS': Refs._getMolarUnits(Refs._flowRateConversionsRef),
         'FLOW_RATE_MASS_UNITS': Refs._getMassUnits(Refs._flowRateConversionsRef),
         'FLOW_RATE_VOLUME_UNITS': Refs._getVolumeUnits(Refs._flowRateConversionsRef)
@@ -344,8 +499,16 @@ export class Refs {
         return Refs._densityConversionsRef;
     }
 
+    get concentrationConversionsRef(): ConversionDict {
+        return Refs._concentrationConversionsRef;
+    }
+
     get energyConversionsRef(): ConversionDict {
         return Refs._energyConversionsRef;
+    }
+
+    get energyRateConversionsRef(): ConversionDict {
+        return Refs._energyRateConversionsRef;
     }
 
     get gibbsFreeEnergyConversionsRef(): ConversionDict {
@@ -360,6 +523,10 @@ export class Refs {
         return Refs._heatCapacityConversionsRef;
     }
 
+    get heatTransferCoefficientRef(): ConversionDict {
+        return Refs._heatTransferCoefficientRef;
+    }
+
     get volumeConversionsRef(): ConversionDict {
         return Refs._volumeConversionsRef;
     }
@@ -368,12 +535,20 @@ export class Refs {
         return Refs._massConversionsRef;
     }
 
+    get molecularWeightConversionsRef(): ConversionDict {
+        return Refs._molecularWeightConversionsRef;
+    }
+
     get powerConversionsRef(): ConversionDict {
         return Refs._powerConversionsRef;
     }
 
     get lengthConversionsRef(): ConversionDict {
         return Refs._lengthConversionsRef;
+    }
+
+    get areaConversionsRef(): ConversionDict {
+        return Refs._areaConversionsRef;
     }
 
     get forceConversionsRef(): ConversionDict {
@@ -388,24 +563,15 @@ export class Refs {
         return Refs._flowRateConversionsRef;
     }
 
-    /**
-     *  Get molar units from conversion data
-     * @param data
-     * @returns Molar units dictionary
-     */
     static _getMolarUnits(
         data: ConversionDict | ConversionDict[] | Array<{ unit: string; value: number }>
     ): ConversionDict {
         const molarUnits: ConversionDict = {};
         const molarSuffixes = ['mol', 'kmol', 'M'];
-
-        // Handle both single object and array of objects
         const dataArray = Array.isArray(data) ? data : [data];
 
-        // Merge all dictionaries if array is provided
         const mergedData: ConversionDict = {};
         for (const dict of dataArray) {
-            // Check if it's an object with unit/value properties
             if ('unit' in dict && 'value' in dict) {
                 mergedData[dict.unit] = dict.value;
             } else {
@@ -413,7 +579,6 @@ export class Refs {
             }
         }
 
-        // iterate through units and check for molar suffixes
         for (const unit of Object.keys(mergedData)) {
             for (const suffix of molarSuffixes) {
                 if (unit.includes(suffix)) {
@@ -422,24 +587,19 @@ export class Refs {
                 }
             }
         }
+
         return molarUnits;
     }
 
-    /** Get mass units from conversion data
-     * @param data
-     * @returns Mass units dictionary
-     */
-    static _getMassUnits(data: ConversionDict | ConversionDict[] | Array<{ unit: string; value: number }>): ConversionDict {
+    static _getMassUnits(
+        data: ConversionDict | ConversionDict[] | Array<{ unit: string; value: number }>
+    ): ConversionDict {
         const massUnits: ConversionDict = {};
         const massSuffixes = ['g', 'kg', 'lb', 'tonne', 'ton', 'slug', 'oz', 'st'];
-
-        // Handle both single object and array of objects
         const dataArray = Array.isArray(data) ? data : [data];
 
-        // Merge all dictionaries if array is provided
         const mergedData: ConversionDict = {};
         for (const dict of dataArray) {
-            // Check if it's an object with unit/value properties
             if ('unit' in dict && 'value' in dict) {
                 mergedData[dict.unit] = dict.value;
             } else {
@@ -447,7 +607,6 @@ export class Refs {
             }
         }
 
-        // iterate through units and check for mass suffixes
         for (const unit of Object.keys(mergedData)) {
             for (const suffix of massSuffixes) {
                 if (unit.includes(suffix)) {
@@ -456,24 +615,23 @@ export class Refs {
                 }
             }
         }
+
         return massUnits;
     }
 
-    /** Get volume units from conversion data
-     * @param data
-     * @returns Volume units dictionary
-     */
-    static _getVolumeUnits(data: ConversionDict | ConversionDict[] | Array<{ unit: string; value: number }>): ConversionDict {
+    static _getVolumeUnits(
+        data: ConversionDict | ConversionDict[] | Array<{ unit: string; value: number }>
+    ): ConversionDict {
         const volumeUnits: ConversionDict = {};
-        const volumeSuffixes = ['m3', 'm³', 'L', 'l', 'cm3', 'cm³', 'dm3', 'dm³', 'ft3', 'ft³', 'in3', 'in³', 'gal', 'bbl', 'barrel'];
-
-        // Handle both single object and array of objects
+        const volumeSuffixes = [
+            'm3', 'm³', 'mÂ³', 'L', 'l', 'cm3', 'cm³', 'cmÂ³',
+            'dm3', 'dm³', 'dmÂ³', 'ft3', 'ft³', 'ftÂ³', 'in3',
+            'in³', 'inÂ³', 'gal', 'bbl', 'barrel'
+        ];
         const dataArray = Array.isArray(data) ? data : [data];
 
-        // Merge all dictionaries if array is provided
         const mergedData: ConversionDict = {};
         for (const dict of dataArray) {
-            // Check if it's an object with unit/value properties
             if ('unit' in dict && 'value' in dict) {
                 mergedData[dict.unit] = dict.value;
             } else {
@@ -481,7 +639,6 @@ export class Refs {
             }
         }
 
-        // iterate through units and check for volume suffixes
         for (const unit of Object.keys(mergedData)) {
             for (const suffix of volumeSuffixes) {
                 if (unit.includes(suffix)) {

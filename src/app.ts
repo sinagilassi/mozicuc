@@ -11,7 +11,7 @@ import { Utils } from './Utils';
 import { ReferenceType, ConversionDict } from './types';
 
 // Package metadata
-export const VERSION = '1.0.1';
+export const VERSION = '1.2.0';
 export const AUTHOR = 'Sina Gilassi';
 export const EMAIL = 'sina.gilassi@gmail.com';
 export const DESCRIPTION = 'Mozi Custom Unit Converter - A flexible unit conversion library';
@@ -297,14 +297,19 @@ export function listReferences(): string[] {
         'PRESSURE',
         'TEMPERATURE',
         'DENSITY',
+        'CONCENTRATION',
         'ENERGY',
+        'ENERGY_RATE',
         'GIBBS_FREE_ENERGY',
         'ENTHALPY',
         'HEAT_CAPACITY',
+        'HEAT_TRANSFER_COEFFICIENT',
         'VOLUME',
         'MASS',
+        'MOLECULAR_WEIGHT',
         'POWER',
         'LENGTH',
+        'AREA',
         'FORCE',
         'VISCOSITY',
         'FLOW_RATE',
