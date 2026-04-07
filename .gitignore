@@ -1,5 +1,10 @@
 # Node.js dependencies
 node_modules/
+.tmp/pkg-test/node_modules/
+
+# npm cache artifacts (local/testing)
+.npm-cache/
+.tmp/**/.npm-cache/
 
 # Build output
 dist/
