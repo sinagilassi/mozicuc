@@ -11,6 +11,6 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "mozicuc": "file:../../mozicuc-1.0.1.tgz"
+    "mozicuc": "file:../../mozicuc-1.2.0.tgz"
   }
 }
